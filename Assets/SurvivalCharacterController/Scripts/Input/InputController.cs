@@ -7,18 +7,20 @@ public class InputController : MonoBehaviour
 {
     [Header("Component References")]
     [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private InputReceiver _inputReceiver = null;
-
-    [Header("Runtime")]
-    [SerializeField] private Vector2 _mouseInput = new Vector2();
-    [SerializeField] private Vector2 _movementInput = new Vector2();
-    [SerializeField] private Vector2 _cameraRelativeMovementInput = new Vector2();
-    [SerializeField] private bool _sprintInput = false;
-    [SerializeField] private bool _jumpInput = false;
 
     [Header("Events")]
     public UnityEvent OnPlayerMenuInput = new UnityEvent();
+    public UnityEvent OnInteractionInput = new UnityEvent();
     public UnityEvent<Vector2> OnMouseInputChanged = new UnityEvent<Vector2>();
+
+    [Header("Runtime")]
+    private Vector2 _mouseInput = new Vector2();
+    private Vector2 _movementInput = new Vector2();
+    private Vector2 _cameraRelativeMovementInput = new Vector2();
+    private bool _sprintInput = false;
+    private bool _jumpInput = false;
+    private InputReceiver _inputReceiver = null;
+    public InputReceiver CurrentInputReceiver { get { return _inputReceiver; } }
 
     private void Start()
     {
@@ -72,6 +74,29 @@ public class InputController : MonoBehaviour
             }
             OnPlayerMenuInput?.Invoke();
         }
+
+        // interaction input
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (_inputReceiver != null)
+            {
+                _inputReceiver.OnInteractionInput?.Invoke();
+            }
+            OnInteractionInput?.Invoke();
+        }
+    }
+
+    public void SetInputReceiver(InputReceiver inputReceiver)
+    {
+        if (_inputReceiver != null)
+        {
+            _inputReceiver.OnCameraRelativeMovementInputChanged?.Invoke(Vector2.zero);
+            _inputReceiver.OnJumpInputChanged?.Invoke(false);
+            _inputReceiver.OnMouseInputChanged?.Invoke(Vector2.zero);
+            _inputReceiver.OnMovementInputChanged?.Invoke(Vector2.zero);
+            _inputReceiver.OnSprintInputChanged?.Invoke(false);
+        }
+        _inputReceiver = inputReceiver;
     }
 
     public Vector2 CameraRelativeInput(Vector2 input)

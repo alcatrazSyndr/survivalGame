@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class SurvivalCharacter_PlayerMenuController : MonoBehaviour
 {
+    [Header("Component References")]
     [SerializeField] private List<PlayerMenu_Menu> _playerMenus = new List<PlayerMenu_Menu>();
     [SerializeField] private GameObject _playerMenuCanvas;
-    [SerializeField] private PlayerMenu_Menu _lastOpenedMenu = null;
-    [SerializeField] private InputController _inputController;
+    [SerializeField] private PlayerController _playerController;
+
+    [Header("Runtime")]
+    private PlayerMenu_Menu _lastOpenedMenu = null;
+    private bool _inMenu = false;
+    public bool InMenu { get { return _inMenu; } }
 
     private void Start()
     {
-        _inputController.OnPlayerMenuInput.AddListener(ToggleMenu);
+        _playerController.PlayerInputController.OnPlayerMenuInput.AddListener(ToggleMenu);
     }
 
     private void ToggleMenu()
@@ -21,11 +26,13 @@ public class SurvivalCharacter_PlayerMenuController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             ClosePlayerMenu();
+            _inMenu = false;
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
             OpenPlayerMenu();
+            _inMenu = true;
         }
     }
 

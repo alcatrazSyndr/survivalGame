@@ -14,8 +14,8 @@ public class SurvivalCharacter_CharacterAnimator : MonoBehaviour
     public float LandingHeight { get { return _landingHeight; } }
 
     [Header("Runtime")]
-    [SerializeField] private float _currentMoveSpeed = 0f;
-    [SerializeField] private float _currentMoveSpeedTarget = 0f;
+    private float _currentMoveSpeed = 0f;
+    private float _currentMoveSpeedTarget = 0f;
 
     private void Start()
     {

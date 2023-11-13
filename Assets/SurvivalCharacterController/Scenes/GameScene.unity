@@ -153,13 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraTransform: {fileID: 330585546}
-  _inputReceiver: {fileID: 3000972534975578147}
-  _mouseInput: {x: 0, y: 0}
-  _movementInput: {x: 0, y: 0}
-  _cameraRelativeMovementInput: {x: 0, y: 0}
-  _sprintInput: 0
-  _jumpInput: 0
   OnPlayerMenuInput:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractionInput:
     m_PersistentCalls:
       m_Calls: []
   OnMouseInputChanged:
@@ -667,6 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268565724}
+  - component: {fileID: 268565725}
   m_Layer: 0
   m_Name: PlayerInteractionController
   m_TagString: Untagged
@@ -689,6 +687,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1325397614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268565725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268565723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b4de00089141c489c56be5cdd52c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 1325397615}
+  _maxInteractionDistance: 7
+  _interactionLayerMasks:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,12 +1183,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451546986}
   m_CullTransparentMesh: 1
---- !u!1 &487914915 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 820738175143505212, guid: b8e156f58984e15498d04060b7404658,
-    type: 3}
-  m_PrefabInstance: {fileID: 3000972534975578138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &535629660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,8 +1284,7 @@ MonoBehaviour:
   - {fileID: 2019283230}
   - {fileID: 421324007}
   _playerMenuCanvas: {fileID: 146600789}
-  _lastOpenedMenu: {fileID: 0}
-  _inputController: {fileID: 1335938}
+  _playerController: {fileID: 1325397615}
 --- !u!4 &561423753
 Transform:
   m_ObjectHideFlags: 0
@@ -1585,7 +1593,7 @@ MonoBehaviour:
   _cameraArmX: {fileID: 1302896848}
   _cameraArmY: {fileID: 1756500228}
   _cameraTransform: {fileID: 330585546}
-  _inputController: {fileID: 1335938}
+  _playerController: {fileID: 1325397615}
 --- !u!4 &1061907528
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,19 +1976,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7173114768340843049, guid: 84d6d049dc885cd48920668b9a942efa,
-        type: 3}
-      propertyPath: _inputReceiver
-      value: 
-      objectReference: {fileID: 2133633710}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3156190171288733872, guid: 84d6d049dc885cd48920668b9a942efa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2133633710}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84d6d049dc885cd48920668b9a942efa, type: 3}
 --- !u!1 &1302896847
 GameObject:
@@ -2169,6 +2168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb97dd71bfbd6941baca0569150dcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuController: {fileID: 561423752}
+  _characterInputReceiver: {fileID: 3000972534975578147}
+  _inputController: {fileID: 1335938}
+  _characterController: {fileID: 3000972534975578148}
+  OnInputReceiverChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1418706140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,42 +3152,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131433550}
   m_CullTransparentMesh: 1
---- !u!1 &2133633705 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3156190171288733872, guid: 84d6d049dc885cd48920668b9a942efa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243619998}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2133633710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133633705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c4fbfe78a6ab994a93174869bcb47a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMouseInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnMovementInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCameraRelativeMovementInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSprintInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJumpInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerMenuInput:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &3000972534975578138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3245,24 +3215,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8575699315144250309, guid: b8e156f58984e15498d04060b7404658,
-        type: 3}
-      propertyPath: _inputReceiver
-      value: 
-      objectReference: {fileID: 3000972534975578147}
-    - target: {fileID: 8575699315144250309, guid: b8e156f58984e15498d04060b7404658,
-        type: 3}
-      propertyPath: _inputController
-      value: 
-      objectReference: {fileID: 1335938}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 820738175143505212, guid: b8e156f58984e15498d04060b7404658,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3000972534975578147}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8e156f58984e15498d04060b7404658, type: 3}
 --- !u!4 &3000972534975578146 stripped
 Transform:
@@ -3270,36 +3226,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3000972534975578138}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3000972534975578147
+--- !u!114 &3000972534975578147 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4162062669857220426, guid: b8e156f58984e15498d04060b7404658,
+    type: 3}
+  m_PrefabInstance: {fileID: 3000972534975578138}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487914915}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c4fbfe78a6ab994a93174869bcb47a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnMouseInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnMovementInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCameraRelativeMovementInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSprintInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJumpInputChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerMenuInput:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!114 &3000972534975578148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8575699315144250309, guid: b8e156f58984e15498d04060b7404658,
+    type: 3}
+  m_PrefabInstance: {fileID: 3000972534975578138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ccd3d5c734e7f4d8318af783767c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

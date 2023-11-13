@@ -12,4 +12,11 @@ public class InputReceiver : MonoBehaviour
     public UnityEvent<bool> OnSprintInputChanged = new UnityEvent<bool>();
     public UnityEvent<bool> OnJumpInputChanged = new UnityEvent<bool>();
     public UnityEvent OnPlayerMenuInput = new UnityEvent();
+    public UnityEvent OnInteractionInput = new UnityEvent();
+
+    [Header("Data")]
+    [SerializeField] private Transform _cameraTargetTransform = null;
+    public Transform CameraTargetTransform { get { return _cameraTargetTransform; } }
+    [SerializeField] private float _cameraTransformPivotDistance = 4f;
+    public Vector3 CameraTransformLocalPositionTarget { get { return new Vector3(0f, 0f, -_cameraTransformPivotDistance); } }
 }

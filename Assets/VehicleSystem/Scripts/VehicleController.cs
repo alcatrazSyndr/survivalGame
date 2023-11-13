@@ -10,6 +10,7 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private WheelCollider _leftBack;
     [SerializeField] private WheelCollider _rightBack;
     [SerializeField] private Rigidbody _mainRigidbody;
+    [SerializeField] private Collider _mainCollider;
 
     [Header("Vehicle Visuals")]
     [SerializeField] private Transform _leftFrontVisual;
@@ -26,13 +27,16 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private bool _fwd = false;
     [SerializeField] private bool _rwd = false;
     [SerializeField] private float _maxVelocity = 60f;
+    [SerializeField] private List<Transform> _vehicleSeats;
+    [SerializeField] private List<Transform> _exitPoints;
 
     [Header("Component References")]
     [SerializeField] private InputReceiver _inputReceiver;
 
     [Header("Runtime")]
-    [SerializeField] private Vector2 _vehicleInput = Vector2.zero;
-    [SerializeField] private bool _brakeInput = false;
+    private Vector2 _vehicleInput = Vector2.zero;
+    private bool _brakeInput = false;
+    private PlayerController _driver = null;
 
     private void Start()
     {
@@ -42,6 +46,7 @@ public class VehicleController : MonoBehaviour
 
         _inputReceiver.OnMovementInputChanged.AddListener(VehicleInputChanged);
         _inputReceiver.OnJumpInputChanged.AddListener(BrakeInputChanged);
+        _inputReceiver.OnInteractionInput.AddListener(DriverExit);
     }
 
     private void FixedUpdate()
@@ -100,5 +105,24 @@ public class VehicleController : MonoBehaviour
     private void BrakeInputChanged(bool brake)
     {
         _brakeInput = brake;
+    }
+
+    public void DriverEntered(PlayerController driver)
+    {
+        _driver = driver;
+
+        Physics.IgnoreCollision(driver.CharacterController.CharacterCollider, _mainCollider, true);
+        driver.CharacterController.FixToRigidbody(_mainRigidbody, _vehicleSeats[0].position, _vehicleSeats[0].rotation);
+    }
+
+    private void DriverExit()
+    {
+        if (_driver == null) return;
+
+        _driver.CharacterController.FixToRigidbody(null, _vehicleSeats[0].position, _vehicleSeats[0].rotation);
+        Physics.IgnoreCollision(_driver.CharacterController.CharacterCollider, _mainCollider, false);
+
+        _driver.ResetInputReceiverToCharacter();
+        _driver = null;
     }
 }

@@ -71,6 +71,101 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &827356098265964750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3977731559904143002}
+  m_Layer: 7
+  m_Name: Seats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3977731559904143002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827356098265964750}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7844075081642913037}
+  m_Father: {fileID: 3916176340953562933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1046930934222065709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7844075081642913037}
+  m_Layer: 7
+  m_Name: DriverSeat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7844075081642913037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046930934222065709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.445, y: 0.9109, z: -0.305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 401324356158203418}
+  m_Father: {fileID: 3977731559904143002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1545532224923570725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401324356158203418}
+  m_Layer: 7
+  m_Name: ExitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &401324356158203418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545532224923570725}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.427, y: -0.841, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7844075081642913037}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1618916515334185782
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +262,9 @@ GameObject:
   - component: {fileID: 8816432974805017021}
   - component: {fileID: 7991953984063496617}
   - component: {fileID: 1461019450269449561}
-  m_Layer: 0
+  - component: {fileID: 4122745072379304197}
+  - component: {fileID: 8570693167355863300}
+  m_Layer: 7
   m_Name: Vehicle_OffroadJeep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,6 +292,7 @@ Transform:
   - {fileID: 548096823097199766}
   - {fileID: 5009606702635338838}
   - {fileID: 8466503805244593286}
+  - {fileID: 3977731559904143002}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7173114768340843049
@@ -214,6 +312,7 @@ MonoBehaviour:
   _leftBack: {fileID: 8908359123516923303}
   _rightBack: {fileID: 2869177037265555368}
   _mainRigidbody: {fileID: 8816432974805017021}
+  _mainCollider: {fileID: 1461019450269449561}
   _leftFrontVisual: {fileID: 1792223623696213237}
   _rightFrontVisual: {fileID: 4397675373918530913}
   _leftBackVisual: {fileID: 4960940788536282517}
@@ -226,9 +325,11 @@ MonoBehaviour:
   _fwd: 1
   _rwd: 0
   _maxVelocity: 20
-  _inputReceiver: {fileID: 0}
-  _vehicleInput: {x: 0, y: 0}
-  _brakeInput: 0
+  _vehicleSeats:
+  - {fileID: 7844075081642913037}
+  _exitPoints:
+  - {fileID: 401324356158203418}
+  _inputReceiver: {fileID: 4122745072379304197}
 --- !u!54 &8816432974805017021
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -286,6 +387,56 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 877cdb2199572784ea1a87afc5ab8342, type: 3}
+--- !u!114 &4122745072379304197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156190171288733872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4fbfe78a6ab994a93174869bcb47a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMouseInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMovementInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCameraRelativeMovementInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJumpInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerMenuInput:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractionInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _cameraTargetTransform: {fileID: 5595901985889538293}
+  _cameraTransformPivotDistance: 8
+--- !u!114 &8570693167355863300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156190171288733872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82fcaba370206e449fc3508a4de6e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactText: Interact
+  _interactSuffixHotkey: ' [ F ]'
+  _vehicleController: {fileID: 7173114768340843049}
 --- !u!1 &3551553478535838709
 GameObject:
   m_ObjectHideFlags: 0

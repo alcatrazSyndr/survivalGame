@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2251026793606717942}
   - component: {fileID: 7315821283878727218}
   - component: {fileID: 8575699315144250309}
+  - component: {fileID: 4162062669857220426}
   m_Layer: 6
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -103,8 +104,6 @@ MonoBehaviour:
   _characterAnimator: {fileID: 21485258186181762}
   _walkAnimationLerpSpeed: 20
   _landingHeight: 0.5
-  _currentMoveSpeed: 0
-  _currentMoveSpeedTarget: 0
 --- !u!114 &8575699315144250309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,21 +118,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterRigidbody: {fileID: 2251026793606717942}
   _characterModel: {fileID: 4802510722141043464}
-  _inputController: {fileID: 0}
+  _inputReceiver: {fileID: 4162062669857220426}
+  _characterCollider: {fileID: 5247652558382626102}
   _movementSpeed: 7
   _sprintSpeed: 7
   _turnSpeed: 10
   _jumpForce: 5
+  _jumpCooldown: 0.1
   _groundMasks:
     serializedVersion: 2
     m_Bits: 1
-  _movementVector: {x: 0, y: 0, z: 0}
-  _currentMovementSpeed: 0
-  _currentSprintSpeed: 0
-  _grounded: 0
   OnStartedJump:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4162062669857220426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820738175143505212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4fbfe78a6ab994a93174869bcb47a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMouseInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMovementInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCameraRelativeMovementInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJumpInputChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerMenuInput:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractionInput:
+    m_PersistentCalls:
+      m_Calls: []
+  _cameraTargetTransform: {fileID: 8963990234237676589}
+  _cameraTransformPivotDistance: 4
 --- !u!1 &2796042446818172225
 GameObject:
   m_ObjectHideFlags: 0
