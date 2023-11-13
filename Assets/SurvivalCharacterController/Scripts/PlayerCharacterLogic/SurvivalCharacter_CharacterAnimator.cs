@@ -20,6 +20,7 @@ public class SurvivalCharacter_CharacterAnimator : MonoBehaviour
     private void Start()
     {
         _characterController.OnStartedJump.AddListener(StartedJump);
+        _characterController.OnFixedToRigidbody.AddListener(AnimateCharacterFixedToRigidbody);
     }
 
     private void Update()
@@ -41,5 +42,20 @@ public class SurvivalCharacter_CharacterAnimator : MonoBehaviour
     private void StartedJump()
     {
         _characterAnimator.Play("Jump_Unarmed");
+    }
+
+    private void AnimateCharacterFixedToRigidbody(Rigidbody rigidbody)
+    {
+        if (rigidbody != null)
+        {
+            if (rigidbody.transform.GetComponent<VehicleController>())
+            {
+                _characterAnimator.Play("Driving_Jeep");
+            }
+        }
+        else
+        {
+            _characterAnimator.Play("Move Tree");
+        }
     }
 }

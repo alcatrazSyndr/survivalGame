@@ -57,7 +57,7 @@ public class InputController : MonoBehaviour
         var jumpInput = Input.GetKey(KeyCode.Space);
         if (jumpInput != _jumpInput && _inputReceiver != null)
             _inputReceiver.OnJumpInputChanged?.Invoke(jumpInput);
-        _sprintInput = jumpInput;
+        _jumpInput = jumpInput;
 
         // sprint input
         var sprintInput = Input.GetKey(KeyCode.LeftShift);

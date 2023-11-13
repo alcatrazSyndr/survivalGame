@@ -113,16 +113,20 @@ public class VehicleController : MonoBehaviour
 
         Physics.IgnoreCollision(driver.CharacterController.CharacterCollider, _mainCollider, true);
         driver.CharacterController.FixToRigidbody(_mainRigidbody, _vehicleSeats[0].position, _vehicleSeats[0].rotation);
+
+        _brakeInput = false;
     }
 
     private void DriverExit()
     {
         if (_driver == null) return;
 
-        _driver.CharacterController.FixToRigidbody(null, _vehicleSeats[0].position, _vehicleSeats[0].rotation);
+        _driver.CharacterController.FixToRigidbody(null, _exitPoints[0].position, Quaternion.identity);
         Physics.IgnoreCollision(_driver.CharacterController.CharacterCollider, _mainCollider, false);
 
         _driver.ResetInputReceiverToCharacter();
         _driver = null;
+
+        _brakeInput = true;
     }
 }

@@ -127,14 +127,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046930934222065709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.445, y: 0.9109, z: -0.305}
+  m_LocalRotation: {x: -0.13984688, y: -0, z: -0, w: 0.99017316}
+  m_LocalPosition: {x: -0.445, y: 1.06, z: -0.265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 401324356158203418}
   m_Father: {fileID: 3977731559904143002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -16.078, y: 0, z: 0}
 --- !u!1 &1545532224923570725
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 1545532224923570725}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.427, y: -0.841, z: 0}
+  m_LocalPosition: {x: -1.4269998, y: -0.33910003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -318,7 +318,7 @@ MonoBehaviour:
   _leftBackVisual: {fileID: 4960940788536282517}
   _rightBackVisual: {fileID: 3989241806121795686}
   _mainRigidbodyVisual: {fileID: 3600636944089153068}
-  _torque: 1500
+  _torque: 3000
   _brakeForce: 6000
   _maxSteeringAngle: 45
   _centerOfMassModifier: 0.45

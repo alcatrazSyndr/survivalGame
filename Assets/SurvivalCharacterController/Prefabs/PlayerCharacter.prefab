@@ -127,8 +127,11 @@ MonoBehaviour:
   _jumpCooldown: 0.1
   _groundMasks:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
   OnStartedJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFixedToRigidbody:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &4162062669857220426
@@ -253,6 +256,11 @@ PrefabInstance:
     - target: {fileID: 2263225055822990331, guid: 77ed4e75246c9494ba6cebe59bdedf29,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737720971571444849, guid: 77ed4e75246c9494ba6cebe59bdedf29,
+        type: 3}
+      propertyPath: m_CullingMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6737720971571444849, guid: 77ed4e75246c9494ba6cebe59bdedf29,

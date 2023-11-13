@@ -24,6 +24,7 @@ public class SurvivalCharacter_CharacterController : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent OnStartedJump = new UnityEvent();
+    public UnityEvent<Rigidbody> OnFixedToRigidbody = new UnityEvent<Rigidbody>();
 
     [Header("Runtime")]
     private Vector3 _movementVector;
@@ -108,17 +109,16 @@ public class SurvivalCharacter_CharacterController : MonoBehaviour
             var fixedJoint = gameObject.GetComponent<FixedJoint>();
             if (fixedJoint != null)
                 Destroy(fixedJoint);
-
+            
             if (!fixedPosition.Equals(Vector3.zero))
             {
                 transform.position = fixedPosition;
                 _characterRigidbody.position = fixedPosition;
             }
-            if (!fixedRotation.Equals(Quaternion.identity))
-            {
-                transform.rotation = fixedRotation;
-                _characterRigidbody.rotation = fixedRotation;
-            }
+            transform.rotation = fixedRotation;
+            _characterRigidbody.rotation = fixedRotation;
+
+            _characterRigidbody.angularVelocity = Vector3.zero;
 
             fixedJoint = gameObject.AddComponent<FixedJoint>();
             fixedJoint.connectedBody = rigidbody;
@@ -134,13 +134,14 @@ public class SurvivalCharacter_CharacterController : MonoBehaviour
                 transform.position = fixedPosition;
                 _characterRigidbody.position = fixedPosition;
             }
-            if (!fixedRotation.Equals(Quaternion.identity))
-            {
-                transform.rotation = fixedRotation;
-                _characterRigidbody.rotation = fixedRotation;
-            }
+            transform.rotation = fixedRotation;
+            _characterRigidbody.rotation = fixedRotation;
 
-            _characterRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            _characterRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
+
+        _characterModel.localRotation = Quaternion.identity;
+
+        OnFixedToRigidbody?.Invoke(rigidbody);
     }
 }
