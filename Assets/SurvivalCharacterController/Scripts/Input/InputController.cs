@@ -19,6 +19,8 @@ public class InputController : MonoBehaviour
     private Vector2 _cameraRelativeMovementInput = new Vector2();
     private bool _sprintInput = false;
     private bool _jumpInput = false;
+    private bool _leftSecondaryInput = false;
+    private bool _rightSecondaryInput = false;
     private InputReceiver _inputReceiver = null;
     public InputReceiver CurrentInputReceiver { get { return _inputReceiver; } }
 
@@ -84,6 +86,18 @@ public class InputController : MonoBehaviour
             }
             OnInteractionInput?.Invoke();
         }
+
+        // left secondary input (Q)
+        var leftSecondaryInput = Input.GetKey(KeyCode.Q);
+        if (leftSecondaryInput != _leftSecondaryInput && _inputReceiver != null)
+            _inputReceiver.OnLeftSecondaryInputChanged?.Invoke(leftSecondaryInput);
+        _leftSecondaryInput = leftSecondaryInput;
+
+        // right secondary input (E)
+        var rightSecondaryInput = Input.GetKey(KeyCode.E);
+        if (rightSecondaryInput != _rightSecondaryInput && _inputReceiver != null)
+            _inputReceiver.OnRightSecondaryInputChanged?.Invoke(rightSecondaryInput);
+        _rightSecondaryInput = rightSecondaryInput;
     }
 
     public void SetInputReceiver(InputReceiver inputReceiver)
@@ -95,6 +109,8 @@ public class InputController : MonoBehaviour
             _inputReceiver.OnMouseInputChanged?.Invoke(Vector2.zero);
             _inputReceiver.OnMovementInputChanged?.Invoke(Vector2.zero);
             _inputReceiver.OnSprintInputChanged?.Invoke(false);
+            _inputReceiver.OnLeftSecondaryInputChanged?.Invoke(false);
+            _inputReceiver.OnRightSecondaryInputChanged?.Invoke(false);
         }
         _inputReceiver = inputReceiver;
     }

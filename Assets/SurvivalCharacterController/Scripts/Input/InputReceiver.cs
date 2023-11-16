@@ -11,6 +11,8 @@ public class InputReceiver : MonoBehaviour
     public UnityEvent<Vector2> OnCameraRelativeMovementInputChanged = new UnityEvent<Vector2>();
     public UnityEvent<bool> OnSprintInputChanged = new UnityEvent<bool>();
     public UnityEvent<bool> OnJumpInputChanged = new UnityEvent<bool>();
+    public UnityEvent<bool> OnLeftSecondaryInputChanged = new UnityEvent<bool>();
+    public UnityEvent<bool> OnRightSecondaryInputChanged = new UnityEvent<bool>();
     public UnityEvent OnPlayerMenuInput = new UnityEvent();
     public UnityEvent OnInteractionInput = new UnityEvent();
 
